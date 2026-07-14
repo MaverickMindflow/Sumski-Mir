@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Hanken+Grotesque:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: inherit; }
+  ::selection { background: #dcc199; }
+  .gal-img { transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .gal-tile:hover .gal-img { transform: scale(1.03); }
+  /* gallery-hover */
+  .cta { transition: transform 200ms ease-out; }
+  .cta:hover { transform: translateY(-2px) scale(1.02); }
+
+  @keyframes heroRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .hero-rise { animation: heroRise 620ms cubic-bezier(.22,.61,.36,1) both; }
+  @media (prefers-reduced-motion: reduce) { .hero-rise { animation: none; } }
+
+  /* ---------- responsive ---------- */
+  html, body { overflow-x: hidden; }
+  .nav-toggle { display: none; border: 0; background: transparent; cursor: pointer; padding: 8px; margin: -8px; color: #33251a; line-height: 0; }
+  .nav-backdrop { display: none; }
+
+  @media (max-width: 880px) {
+    .nav-toggle { display: inline-flex; z-index: 70; }
+    .nav-links {
+      position: fixed; top: 0; right: 0; height: 100vh; width: min(80vw, 320px);
+      flex-direction: column !important; align-items: stretch !important;
+      justify-content: flex-start !important; gap: 6px !important;
+      padding: 92px 26px 26px; background: #f4efe6;
+      box-shadow: -14px 0 46px rgba(60,44,29,0.22);
+      transform: translateX(105%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+      z-index: 65;
+    }
+    .nav-links.open { transform: translateX(0); }
+    .nav-links a { font-size: 18px !important; padding: 12px 4px !important; border-bottom: 1px solid rgba(42,38,32,0.08); }
+    .nav-links a.cta { border-bottom: 0; text-align: center; margin-top: 14px; padding: 15px 20px !important; }
+    .nav-backdrop.open { display: block; position: fixed; inset: 0; background: rgba(20,15,10,0.42); z-index: 60; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-split { grid-template-columns: 1fr !important; }
+    .price-grid { grid-template-columns: 1fr !important; }
+    .okolina-grid { grid-template-columns: 1fr !important; }
+    .okolina-map { margin-top: 0 !important; order: 2; }
+    .okolina-text { margin-top: 24px !important; order: 1; }
+    .okolina-places { margin-top: 18px !important; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-photo-wrap img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center 38% !important; }
+  }
+
+  @media (max-width: 680px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; grid-auto-rows: 150px !important; }
+    .gallery-grid .gal-tile { grid-column: auto !important; grid-row: auto !important; }
+  }
+</style>
+</helmet>
+
+<div style="font-family: 'Hanken Grotesque', system-ui, sans-serif; color: #2e2015; -webkit-font-smoothing: antialiased; overflow-x: hidden; background-color: #EBE3D6">
+
+  <!-- NAV -->
+  <header style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 5vw, 64px); background: rgba(244,239,230,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,38,32,0.08);">
+    <a href="#top" style="display: flex; align-items: baseline; gap: 10px;">
+      <span style="font-family: 'Instrument Serif', serif; font-size: 31px; letter-spacing: 0.3px; color: #33251a;">Šumski Mir</span>
+      <span style="font-size: 12.5px; letter-spacing: 3px; text-transform: uppercase; color: #9c8460;">Zlatibor</span>
+    </a>
+    <nav style="display: flex; align-items: center;">
+      <div class="nav-links {{ menuClass }}" onClick="{{ closeMenu }}" style="display: flex; align-items: center; gap: clamp(14px, 2.4vw, 34px);">
+        <a href="#kucica" style="font-size: 14px; color: #5a4632;" style-hover="{{ hoverLink }}">Kućica</a>
+        <a href="#galerija" style="font-size: 14px; color: #5a4632;">Galerija</a>
+        <a href="#cenovnik" style="font-size: 14px; color: #5a4632;">Cenovnik</a>
+        <a href="#okolina" style="font-size: 14px; color: #5a4632;">Okolina</a>
+        <a href="{{ bookingUrl }}" target="_blank" class="cta" style="font-size: 14px; font-weight: 600; color: #fff; padding: 10px 20px; border-radius: 999px; background-color: #614531; overflow: visible">Rezerviši</a>
+      </div>
+      <button class="nav-toggle" onClick="{{ toggleMenu }}" aria-label="Meni">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </nav>
+  </header>
+  <div class="nav-backdrop {{ menuClass }}" onClick="{{ closeMenu }}"></div>
+
+  <div id="top"></div>
+
+  <!-- HERO A: OVERLAY -->
+  <sc-if value="{{ isOverlay }}" hint-placeholder-val="{{ true }}">
+    <section style="position: relative; height: min(88vh, 820px); min-height: 560px; width: 100%;">
+      <div class="hero-photo-wrap" style="position: absolute; inset: 0;">
+        <img src="images/photo-1.jpg" alt="A-frame kućica Šumski Mir na Zlatiboru" style="width:100%;height:100%;object-fit:cover;object-position:55% 50%;display:block;filter:brightness(1.06) saturate(1.03);">
+      </div>
+      <div style="position: absolute; inset: 0; background: linear-gradient(65deg, rgba(20,28,18,0.72) 0%, rgba(20,28,18,0.42) 45%, rgba(20,28,18,0.06) 78%); pointer-events: none;"></div>
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; justify-content: flex-end; padding: clamp(40px, 5vw, 72px); padding-left: clamp(40px, 5.4vw, 88px); padding-bottom: clamp(28px, 3.5vw, 48px); pointer-events: none;">
+        <span class="hero-rise" style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #f0dcc0; margin-bottom: 10px; position: relative; top: -9px; animation-delay: 40ms;">Glamping · Zlatibor</span>
+        <h1 class="hero-rise" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 6.4vw, 85px); line-height: 1; color: #fdf6e9; margin: 0 0 6px; max-width: 12ch; text-wrap: balance; animation-delay: 120ms;">Tvoja tišina među borovima</h1>
+        <p class="hero-rise" style="font-size: clamp(16px, 1.7vw, 19px); color: #e6d2b6; max-width: 40ch; margin: 0 0 18px; line-height: 1.5; animation-delay: 200ms;">Skrivena drvena kućica sa jacuzzijem i pogledom na planinu. Mesto gde se vreme uspori.</p>
+        <div class="hero-rise" style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-start; margin-top: 6px; pointer-events: auto; animation-delay: 280ms;">
+          <a href="{{ bookingUrl }}" target="_blank" class="cta" style="display: inline-flex; align-items: center; height: 46px; padding: 0 26px; font-size: 15px; font-weight: 500; color: #3a2f25; background: #f6efe6; border-radius: 23px;" style-hover="{{ hoverBook }}">Rezerviši na Booking-u</a>
+          <a href="{{ airbnbUrl }}" target="_blank" class="cta" style="display: inline-flex; align-items: center; height: 46px; padding: 0 26px; font-size: 15px; font-weight: 500; color: #f6efe6; border: 1px solid #d9cdba; border-radius: 23px;" style-hover="{{ hoverAir }}">Pogledaj na Airbnb-u</a>
+        </div>
+      </div>
+      <div class="hero-rise" style="position: absolute; top: clamp(32px, 3.7vw, 40px); right: clamp(44px, 4.8vw, 52px); width: 108px; height: 124px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f6efe6; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); animation-delay: 160ms;">
+        <div style="font-family: 'Instrument Serif', serif; font-size: 33px; line-height: 1; color: #3a2f25; font-weight: 500;">{{ price }}€</div>
+        <div style="width: 72%; height: 1px; background: #dfd4c2; margin: 12px 0;"></div>
+        <div style="font-size: 14px; color: #6b5e4e;">po noćenju</div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- HERO B: SPLIT -->
+  <sc-if value="{{ isSplit }}" hint-placeholder-val="{{ true }}">
+    <section class="hero-split" style="display: grid; grid-template-columns: 1fr 1fr; min-height: min(88vh, 800px);">
+      <div style="display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 5vw, 88px); background: #ebe4d6;">
+        <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }}; margin-bottom: 20px;">Glamping · Zlatibor</span>
+        <h1 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(42px, 5.5vw, 82px); line-height: 1; color: #33251a; margin: 0 0 24px; text-wrap: balance;">Tvoja tišina među borovima</h1>
+        <p style="font-size: clamp(16px, 1.4vw, 19px); color: #6b5540; max-width: 44ch; margin: 0 0 32px; line-height: 1.6;">Skrivena drvena A-frame kućica sa privatnim jacuzzijem, pogledom na planinu i brzim internetom. Mesto gde se vreme uspori.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+          <a href="{{ bookingUrl }}" target="_blank" class="cta" style="font-size: 15px; font-weight: 600; color: #fff; background: {{ accent }}; padding: 15px 30px; border-radius: 999px;">Rezerviši na Booking-u</a>
+          <a href="{{ airbnbUrl }}" target="_blank" class="cta" style="font-size: 15px; font-weight: 600; color: #33251a; border: 1.5px solid rgba(34,49,34,0.25); padding: 15px 30px; border-radius: 999px;">Airbnb</a>
+        </div>
+        <div style="margin-top: 40px; display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-family: 'Instrument Serif', serif; font-size: 30px; color: #33251a;">{{ price }}€</span>
+          <span style="font-size: 14px; color: #9c8460;">/ noćenje</span>
+        </div>
+      </div>
+      <div style="position: relative; min-height: 420px;">
+        <img src="images/photo-1.jpg" alt="A-frame kućica Šumski Mir na Zlatiboru" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.06) saturate(1.03);">
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- HERO C: MINIMAL -->
+  <sc-if value="{{ isMinimal }}" hint-placeholder-val="{{ true }}">
+    <section style="padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 64px) 0;">
+      <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+        <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #9c8460;">Glamping · Zlatibor</span>
+        <h1 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(48px, 9vw, 120px); line-height: 0.95; color: #33251a; margin: 22px 0 20px; text-wrap: balance;">Tvoja tišina među borovima</h1>
+        <p style="font-size: clamp(16px, 2vw, 21px); color: #6b5540; max-width: 52ch; margin: 0 auto 34px; line-height: 1.55;">Skrivena drvena kućica sa jacuzzijem i pogledom na planinu. Mesto gde se vreme uspori.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: clamp(40px, 6vw, 64px);">
+          <a href="{{ bookingUrl }}" target="_blank" class="cta" style="font-size: 15px; font-weight: 600; color: #fff; background: {{ accent }}; padding: 15px 30px; border-radius: 999px;">Rezerviši od {{ price }}€ / noć</a>
+          <a href="{{ airbnbUrl }}" target="_blank" class="cta" style="font-size: 15px; font-weight: 600; color: #33251a; border: 1.5px solid rgba(34,49,34,0.25); padding: 15px 30px; border-radius: 999px;">Pogledaj na Airbnb-u</a>
+        </div>
+      </div>
+      <div style="position: relative; width: 100%; height: min(64vh, 620px); min-height: 400px;">
+        <img src="images/photo-1.jpg" alt="A-frame kućica Šumski Mir na Zlatiboru" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:24px;filter:brightness(1.06) saturate(1.03);">
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- AMENITIES / OPIS -->
+  <section id="kucica" style="padding: clamp(64px, 10vw, 128px) clamp(20px, 5vw, 64px); max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(40px, 6vw, 72px);">
+      <div>
+        <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }};">Sadržaji</span>
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; color: #33251a; margin: 14px 0 0; max-width: 16ch;">Sve za savršen odmor</h2>
+      </div>
+      <p style="font-size: 17px; color: #6b5540; max-width: 34ch; line-height: 1.6; margin: 0;">Trougaona drvena kućica za dvoje, uklopljena u borovu šumu Zlatibora. Topla, mirna i potpuno tvoja.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+      <sc-for list="{{ amenities }}" as="a" hint-placeholder-count="6">
+        <div style="background: #f8f3ea; border: 1px solid rgba(42,38,32,0.08); border-radius: 18px; padding: 40px 28px; box-shadow: 0 10px 22px -16px rgba(60,44,29,0.35); color: #a18b6a; transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;" style-hover="{{ cardHover }}">
+          <div style="width: 44px; height: 44px; margin-bottom: 20px; color: inherit;">{{ a.icon }}</div>
+          <h3 style="font-size: 19px; font-weight: 600; color: #33251a; margin: 0 0 8px;">{{ a.title }}</h3>
+          <p style="font-size: 15px; color: #7a6349; line-height: 1.55; margin: 0;">{{ a.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- GALERIJA -->
+  <section id="galerija" style="padding: 0 clamp(20px, 5vw, 64px) clamp(64px, 10vw, 128px); max-width: 1280px; margin: 0 auto;">
+    <div style="margin-bottom: 18px;">
+      <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }};">Galerija</span>
+      <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; color: #33251a; margin: 14px 0 0;">Pogledaj iznutra i spolja</h2>
+    </div>
+    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 155px; gap: 14px;">
+        <div class="gal-tile" style="position: relative; grid-column: 1 / span 2; grid-row: 1 / span 3; overflow: hidden; border-radius: 18px;"><img class="gal-img" src="images/photo-2.jpg" alt="Enterijer — dnevni boravak sa pogledom" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;"></div>
+        <div class="gal-tile" style="position: relative; grid-column: 3; grid-row: 1 / span 2; overflow: hidden; border-radius: 18px;"><img class="gal-img" src="images/photo-3.jpg" alt="Spavaći deo pod kosim krovom" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;"></div>
+        <div class="gal-tile" style="position: relative; grid-column: 4; grid-row: 1 / span 2; overflow: hidden; border-radius: 18px;"><img class="gal-img" src="images/photo-4.jpg" alt="Privatni jacuzzi na terasi" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;"></div>
+        <div class="gal-tile" style="position: relative; grid-column: 3 / span 2; grid-row: 3 / span 3; overflow: hidden; border-radius: 18px;"><img class="gal-img" src="images/photo-5.jpg" alt="Terasa sa pogledom na sunčev izlazak nad borovima" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;"></div>
+        <div class="gal-tile" style="position: relative; grid-column: 1; grid-row: 4 / span 2; overflow: hidden; border-radius: 18px;"><img class="gal-img" src="images/photo-6.jpg" alt="Kuhinja i trpezarija" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;"></div>
+        <div class="gal-tile" style="position: relative; grid-column: 2; grid-row: 4 / span 2; overflow: hidden; border-radius: 18px;"><img class="gal-img" src="images/photo-7.jpg" alt="A-frame kućica noću" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;"></div>
+      </div>
+  </section>
+
+  <!-- CENOVNIK -->
+  
+
+  <!-- OKOLINA -->
+  <section id="cenovnik" style="background: #33251a; color: #ece0cb; padding: clamp(64px, 10vw, 128px) clamp(20px, 5vw, 64px);">
+    <div class="price-grid" style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center;">
+      <div>
+        <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #b3a488;">Cenovnik</span>
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; margin: 14px 0 20px; color: #ebe4d6;">Jednostavno i bez skrivenih troškova</h2>
+        <p style="font-size: 17px; color: #f0e2c9; line-height: 1.6; margin: 0 0 28px; max-width: 42ch;">Cena uključuje boravak za dve osobe, korišćenje jacuzzija, posteljinu, peškire i brz internet.</p>
+        <ul style="list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 12px;">
+          <li style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #e6d2b6;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b3a488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M20 6 9 17l-5-5"></path></svg> Prijava od 15h, odjava do 11h</li>
+          <li style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #e6d2b6;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b3a488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M20 6 9 17l-5-5"></path></svg> Minimum 2 noćenja</li>
+          <li style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #e6d2b6;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b3a488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M20 6 9 17l-5-5"></path></svg> Besplatan parking uz kućicu</li>
+        </ul>
+      </div>
+      <div style="padding: clamp(28px, 4vw, 44px); text-align: center; margin-top: -8px; background-color: #3F2F21; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-radius: 18px">
+        <div style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #E6D2B6">Cena po noćenju</div>
+        <div style="display: flex; align-items: baseline; justify-content: center; gap: 6px; margin: 14px 0 6px;">
+          <span style="font-family: 'Instrument Serif', serif; font-size: clamp(64px, 10vw, 96px); line-height: 1; color: #EBE3D6">{{ price }}</span>
+          <span style="font-family: 'Instrument Serif', serif; font-size: 40px; color: #EBE3D6">€</span>
+        </div>
+        <div style="font-size: 14px; color: #C7B59D; margin-bottom: 28px">za dve osobe · sve uključeno</div>
+        <a href="{{ bookingUrl }}" target="_blank" class="cta" style="display: block; font-size: 16px; font-weight: 600; color: #33251a; background: #ebe4d6; padding: 16px; border-radius: 999px; margin-bottom: 12px;" style-hover="{{ hoverLight }}">Rezerviši na Booking-u</a>
+        <a href="{{ airbnbUrl }}" target="_blank" class="cta" style="display: block; font-size: 16px; font-weight: 600; color: #ebe4d6; border: 1.5px solid rgba(244,239,230,0.4); padding: 16px; border-radius: 999px;">Pogledaj na Airbnb-u</a>
+      </div>
+    </div>
+  </section><section id="okolina" style="padding: clamp(64px, 10vw, 128px) clamp(20px, 5vw, 64px); max-width: 1200px; margin: 0 auto;">
+    <div class="okolina-grid" style="display: grid; grid-template-columns: 1.12fr 0.88fr; gap: clamp(28px, 5vw, 60px); align-items: center;">
+    <div class="okolina-map" style="padding: clamp(12px, 1.6vw, 22px); border-radius: 28px; border: 1px solid rgba(60,44,29,0.12); box-shadow: 0 26px 64px -36px rgba(60,44,29,0.5); margin-top: 68px; background-color: #EBE2D7">
+      <img src="images/map.jpeg" alt="Ilustrovana mapa okoline — kućica Šumski mir i atrakcije na Zlatiboru" style="display: block; width: 100%; height: auto; border-radius: 16px;">
+    </div>
+    <div class="okolina-text" style="margin-top: 16px;">
+    <div style="margin-bottom: clamp(40px, 6vw, 64px); max-width: 46ch;">
+      <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }}; display: block; margin-top: 12px;">Lokacija i okolina</span>
+      <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; color: #33251a; margin: 14px 0 24px;">Srce Zlatibora, na dohvat ruke</h2>
+      <p style="font-size: 17px; color: #6b5540; line-height: 1.6; margin: 0;">Kućica je u miru šume, a sve najlepše na Zlatiboru je na kratkoj vožnji.</p>
+    </div>
+    <div class="okolina-places" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: -52px;">
+      <sc-for list="{{ places }}" as="p" hint-placeholder-count="5">
+        <div style="border-top: 2px solid rgba(42,38,32,0.12); padding-top: 20px;">
+          <div style="font-size: 13px; color: {{ accent }}; font-weight: 600; margin-bottom: 6px;">{{ p.dist }}</div>
+          <h3 style="font-size: 20px; font-weight: 600; color: #33251a; margin: 0 0 8px;">{{ p.name }}</h3>
+          <p style="font-size: 15px; color: #7a6349; line-height: 1.55; margin: 0;">{{ p.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- RECENZIJE -->
+  <section id="recenzije" style="background: #ebe4d6; padding: clamp(64px, 10vw, 128px) clamp(20px, 5vw, 64px); margin-top: -50px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: clamp(40px, 6vw, 64px);">
+        <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }}; display: block; margin-top: -8px;">Recenzije</span>
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; color: #33251a; margin: 14px 0 0;">Gosti se rado vraćaju</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+            <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">{{ r.text }}</p>
+            <div style="font-size: 14px; font-weight: 600; color: #33251a;">{{ r.name }}</div>
+            <div style="font-size: 13px; color: #9c8460;">{{ r.origin }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="text-align: center; margin-top: clamp(44px, 6vw, 68px);">
+        <a href="recenzije.html" class="cta" style="display: inline-block; font-size: 15px; font-weight: 600; color: #33251a; border: 1.5px solid rgba(34,49,34,0.25); padding: 15px 30px; border-radius: 999px;">Pogledaj sve recenzije</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: clamp(64px, 10vw, 128px) clamp(20px, 5vw, 64px); max-width: 820px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: clamp(36px, 5vw, 56px);">
+      <span style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }};">Česta pitanja</span>
+      <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; color: #33251a; margin: 14px 0 0;">Dobro je znati</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="background: #f8f3ea; border: 1px solid rgba(42,38,32,0.08); border-radius: 16px; padding: 24px 28px;">
+          <h3 style="font-size: 18px; font-weight: 600; color: #33251a; margin: 0 0 10px;">{{ f.q }}</h3>
+          <p style="font-size: 15px; color: #7a6349; line-height: 1.6; margin: 0;">{{ f.a }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + FOOTER -->
+  <footer style="background: #33251a; color: #ece0cb; padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 64px) 48px;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(38px, 6vw, 76px); line-height: 1; margin: 0 0 22px; text-wrap: balance; color: #ebe4d6;">Spreman za bekstvo u prirodu?</h2>
+      <p style="font-size: 18px; color: #d8c5a4; max-width: 46ch; margin: 0 auto 36px; line-height: 1.6;">Proveri dostupnost i rezerviši svoj termin. Broj noćenja je ograničen.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;">
+        <a href="{{ bookingUrl }}" target="_blank" class="cta" style="font-size: 16px; font-weight: 600; color: #33251a; background: {{ accent }}; padding: 16px 34px; border-radius: 999px;">Rezerviši na Booking-u</a>
+        <a href="{{ airbnbUrl }}" target="_blank" class="cta" style="font-size: 16px; font-weight: 600; color: #ebe4d6; border: 1.5px solid rgba(244,239,230,0.4); padding: 16px 34px; border-radius: 999px;">Pogledaj na Airbnb-u</a>
+      </div>
+    </div>
+    <div style="max-width: 1100px; margin: clamp(56px, 8vw, 88px) auto 0; padding-top: 32px; border-top: 1px solid rgba(244,239,230,0.14); display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: baseline; gap: 10px;">
+        <span style="font-family: 'Instrument Serif', serif; font-size: 24px; color: #ebe4d6;">Šumski Mir</span>
+        <span style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #a68d68;">Zlatibor</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; color: #d8c5a4;">
+        <span>+381 6X XXX XXXX</span>
+        <span>kontakt@sumskimir.rs</span>
+        <a href="#" target="_blank" style="color: #d8c5a4;">@sumskimir</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;heroStyle&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;overlay&quot;, &quot;split&quot;, &quot;minimal&quot;], &quot;default&quot;: &quot;overlay&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Hero&quot; },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: [&quot;#c0714a&quot;, &quot;#8a6d3b&quot;, &quot;#5e7355&quot;, &quot;#a85a4a&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Izgled&quot; },
+  &quot;price&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;112&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Sadržaj&quot; },
+  &quot;bookingUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Linkovi&quot; },
+  &quot;airbnbUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Linkovi&quot; }
+}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  icon(paths) {
+    const h = React.createElement;
+    return h("svg", { width: 44, height: 44, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round" },
+      paths.map((d, i) => h("path", { key: i, d })));
+  }
+  iconEls() {
+    const h = React.createElement;
+    return {
+      jacuzzi: this.icon(["M3 12h18", "M4 12v4a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-4", "M7 12V6a2 2 0 0 1 4 0", "M9 5.5l1.5 1", "M8 3.5c1 .6 1 1.4 0 2"]),
+      mountain: this.icon(["M3 19h18", "M6 19l5-9 3 5 2-3 4 7", "M11 10l1.5-2.5"]),
+      wifi: this.icon(["M5 12.5a10 10 0 0 1 14 0", "M8 15.5a6 6 0 0 1 8 0", "M11 18.5a2 2 0 0 1 2 0", "M12 21h.01"]),
+      privacy: this.icon(["M8 20V11l-2 2", "M8 11l2 2", "M16 20V9l-2 2", "M16 9l2 2", "M12 20V6l-2 2", "M12 6l2 2", "M3 20h18"]),
+      cabin: this.icon(["M4 21V10l8-6 8 6v11", "M4 21h16", "M10 21v-6h4v6", "M9 4l3-2.2L15 4"]),
+      kitchen: this.icon(["M6 3v7a2 2 0 0 0 2 2 2 2 0 0 0 2-2V3", "M8 3v18", "M16 3c-1.5 0-2 2-2 4s.5 4 2 4v10", "M16 3v18"]),
+    };
+  }
+  renderVals() {
+    const accent = this.props.accent ?? "#b5702c";
+    const ic = this.iconEls();
+    const cardHover = { transform: "translateY(-4px)", boxShadow: "0 18px 34px -20px rgba(60,44,29,0.5)", color: accent };
+    const style = this.props.heroStyle ?? "overlay";
+    return {
+      accent,
+      menuClass: this.state.menuOpen ? "open" : "",
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      price: this.props.price ?? "112",
+      bookingUrl: this.props.bookingUrl || "#",
+      airbnbUrl: this.props.airbnbUrl || "#",
+      isOverlay: style === "overlay",
+      isSplit: style === "split",
+      isMinimal: style === "minimal",
+      hoverLink: { color: accent },
+      hoverLight: { background: "#e6d2b6" },
+      hoverBook: { background: "#eadfcc" },
+      hoverAir: { background: "rgba(255,255,255,0.06)" },
+      cardHover,
+      amenities: [
+        { title: "Privatni jacuzzi", desc: "Topla voda pod otvorenim nebom, sa pogledom na borove.", icon: ic.jacuzzi },
+        { title: "Pogled na planinu", desc: "Panorama Zlatibora sa terase i iz kreveta.", icon: ic.mountain },
+        { title: "Super brz WiFi", desc: "Stabilan i brz internet — radi na daljinu bez brige.", icon: ic.wifi },
+        { title: "Potpuna privatnost", desc: "Nema komšija na vidiku — samo šuma i tišina.", icon: ic.privacy },
+        { title: "Topla drvena kućica", desc: "Grejanje i prijatan ambijent u svako doba godine.", icon: ic.cabin },
+        { title: "Mala kuhinja", desc: "Sve za jutarnju kafu i lagane obroke.", icon: ic.kitchen },
+      ],
+      places: [
+        { dist: "12 min", name: "Gold Gondola", desc: "Najduža panoramska gondola u ovom delu Evrope." },
+        { dist: "10 min", name: "Centar Zlatibora", desc: "Jezero, restorani, kafići i šetnja." },
+        { dist: "20 min", name: "Stopića pećina", desc: "Čuvene bigrene kade i podzemni vodopadi." },
+        { dist: "15 min", name: "Tornik", desc: "Najviši vrh, staze za skijanje i planinarenje." },
+        { dist: "25 min", name: "Sirogojno", desc: "Muzej na otvorenom i tradicionalno selo." },
+      ],
+      reviews: [
+        { stars: "★★★★★", text: "Savršen mir. Jacuzzi uveče uz zvezde je nešto najlepše. Vraćamo se sigurno.", name: "Ana i Miloš", origin: "Beograd" },
+        { stars: "★★★★★", text: "Kućica je tačno kao na slikama, čak i lepša. Čisto, toplo i predivan pogled.", name: "Jelena", origin: "Novi Sad" },
+        { stars: "★★★★★", text: "Idealno za odmor od grada. Internet odličan, mogli smo i da radimo par sati.", name: "Stefan", origin: "Niš" },
+      ],
+      faqs: [
+        { q: "Kako da rezervišem?", a: "Rezervacije idu preko Booking-a ili Airbnb-a — klikni na dugme za rezervaciju i izaberi termin." },
+        { q: "Za koliko osoba je kućica?", a: "Kućica je namenjena za dve osobe. Za dodatne goste nas kontaktiraj unapred." },
+        { q: "Da li su ljubimci dozvoljeni?", a: "Kontaktiraj nas pre rezervacije — u zavisnosti od termina moguće je." },
+        { q: "Ima li parkinga?", a: "Da, besplatan parking se nalazi neposredno uz kućicu." },
+        { q: "Kada je prijava i odjava?", a: "Prijava je od 15h, a odjava do 11h. Fleksibilnost je moguća po dogovoru." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
