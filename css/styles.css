@@ -43,7 +43,9 @@ html, body { overflow-x: hidden; }
   .price-grid { grid-template-columns: 1fr !important; }
   .amenities-grid { grid-template-columns: 1fr 1fr !important; }
   .okolina-grid { grid-template-columns: 1fr !important; }
-  .okolina-map { margin-top: 0 !important; order: 2; }
+  .okolina-map { margin-top: 0 !important; order: 2; display: block !important; }
+  .okolina-map img { height: auto !important; }
+  .okolina-text { align-self: stretch !important; order: 1; }
   .okolina-text { margin-top: 24px !important; order: 1; }
   .okolina-places { margin-top: 18px !important; }
   .hero-photo-wrap img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center 38% !important; }
