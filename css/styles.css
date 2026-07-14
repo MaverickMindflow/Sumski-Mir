@@ -47,7 +47,17 @@ html, body { overflow-x: hidden; }
   .okolina-map img { height: auto !important; }
   .okolina-text { align-self: stretch !important; order: 1; margin-top: 24px !important; }
   .okolina-places { margin-top: 18px !important; }
-  .hero-photo-wrap img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center 38% !important; }
+  .hero-photo-wrap img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: 39% 38% !important; }
+  .recenzije-section { margin-top: -20px !important; }
+  .faq-section { padding-top: calc(clamp(64px, 10vw, 128px) - 20px) !important; }
+  .hero-price { width: 94px !important; height: 108px !important; }
+  .hero-price-num { font-size: 29px !important; }
+  .hero-price-rule { margin: 10px 0 !important; }
+  .hero-price-label { font-size: 12.5px !important; }
+  .hero-cta-row { flex-direction: column !important; align-items: flex-start !important; }
+  .hero-cta { width: 220px !important; max-width: 100% !important; padding: 0 20px !important; }
+  .final-cta-row { flex-direction: column !important; align-items: center !important; }
+  .final-cta, .price-cta { display: inline-flex !important; align-items: center !important; justify-content: center !important; width: 220px !important; max-width: 100% !important; height: 46px !important; padding: 0 20px !important; font-size: 15px !important; font-weight: 500 !important; border-radius: 23px !important; box-sizing: border-box !important; }
 }
 
 @media (max-width: 720px) {
@@ -59,4 +69,10 @@ html, body { overflow-x: hidden; }
   .amenities-grid { grid-template-columns: 1fr !important; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; grid-auto-rows: 150px !important; }
   .gallery-grid .gal-tile { grid-column: auto !important; grid-row: auto !important; }
+}
+
+@media (min-width: 1200px) {
+  .hero-price { width: 148px !important; height: 170px !important; }
+  .hero-price-num { font-size: 45px !important; }
+  .hero-price-label { font-size: 16px !important; }
 }
