@@ -1,57 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<title>Recenzije — Šumski Mir, Zlatibor</title>
+<meta name="description" content="Recenzije gostiju A-frame kućice Šumski Mir na Zlatiboru — ocena 4.96, preko 180 noćenja.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; }
-  a { color: inherit; text-decoration: none; }
-  a:hover { color: inherit; }
-  ::selection { background: #dcc199; }
-  .cta { transition: transform 200ms ease-out; }
-  .cta:hover { transform: translateY(-2px) scale(1.02); }
-  .rev-card { transition: transform 220ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease-out; }
-  .rev-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -20px rgba(60,44,29,0.5); }
-  @keyframes heroRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  .hero-rise { animation: heroRise 620ms cubic-bezier(.22,.61,.36,1) both; }
-  @media (prefers-reduced-motion: reduce) { .hero-rise { animation: none; } }
-  html, body { overflow-x: hidden; }
-  .nav-toggle { display: none; border: 0; background: transparent; cursor: pointer; padding: 8px; margin: -8px; color: #33251a; line-height: 0; }
-  .nav-backdrop { display: none; }
-  @media (max-width: 880px) {
-    .nav-toggle { display: inline-flex; z-index: 70; }
-    .nav-links {
-      position: fixed; top: 0; right: 0; height: 100vh; width: min(80vw, 320px);
-      flex-direction: column !important; align-items: stretch !important;
-      justify-content: flex-start !important; gap: 6px !important;
-      padding: 92px 26px 26px; background: #f4efe6;
-      box-shadow: -14px 0 46px rgba(60,44,29,0.22);
-      transform: translateX(105%); transition: transform .32s cubic-bezier(.4,0,.2,1);
-      z-index: 65;
-    }
-    .nav-links.open { transform: translateX(0); }
-    .nav-links a { font-size: 18px !important; padding: 12px 4px !important; border-bottom: 1px solid rgba(42,38,32,0.08); }
-    .nav-links a.cta { border-bottom: 0; text-align: center; margin-top: 14px; padding: 15px 20px !important; }
-    .nav-backdrop.open { display: block; position: fixed; inset: 0; background: rgba(20,15,10,0.42); z-index: 60; }
-  }
-  @media (max-width: 720px) {
-    .stats-row { flex-direction: column !important; }
-    .stats-row .stat-div { display: none !important; }
-  }
-</style>
-</helmet>
-
-<div style="font-family: 'Hanken Grotesque', system-ui, sans-serif; color: #2e2015; -webkit-font-smoothing: antialiased; overflow-x: hidden; background-color: #EBE3D6; min-height: 100vh;">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="min-height: 100vh;">
 
   <!-- NAV -->
   <header style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 5vw, 64px); background: rgba(244,239,230,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,38,32,0.08);">
@@ -60,35 +19,29 @@
       <span style="font-size: 12.5px; letter-spacing: 3px; text-transform: uppercase; color: #9c8460;">Zlatibor</span>
     </a>
     <nav style="display: flex; align-items: center;">
-      <div class="nav-links {{ menuClass }}" onClick="{{ closeMenu }}" style="display: flex; align-items: center; gap: clamp(14px, 2.4vw, 34px);">
-        <a href="Sumski Mir.dc.html#kucica" style="font-size: 14px; color: #5a4632;" style-hover="{{ hoverLink }}">Kućica</a>
-        <a href="Sumski Mir.dc.html#galerija" style="font-size: 14px; color: #5a4632;">Galerija</a>
-        <a href="Sumski Mir.dc.html#cenovnik" style="font-size: 14px; color: #5a4632;">Cenovnik</a>
-        <a href="Sumski Mir.dc.html#okolina" style="font-size: 14px; color: #5a4632;">Okolina</a>
-        <a href="{{ bookingUrl }}" target="_blank" class="cta" style="font-size: 14px; font-weight: 600; color: #fff; padding: 10px 20px; border-radius: 999px; background-color: #614531; overflow: visible;">Rezerviši</a>
+      <div class="nav-links" style="display: flex; align-items: center; gap: clamp(14px, 2.4vw, 34px);">
+        <a href="index.html#kucica" style="font-size: 14px; color: #5a4632;">Kućica</a>
+        <a href="index.html#galerija" style="font-size: 14px; color: #5a4632;">Galerija</a>
+        <a href="index.html#cenovnik" style="font-size: 14px; color: #5a4632;">Cenovnik</a>
+        <a href="index.html#okolina" style="font-size: 14px; color: #5a4632;">Okolina</a>
+        <a href="#" target="_blank" class="cta" style="font-size: 14px; font-weight: 600; color: #fff; padding: 10px 20px; border-radius: 999px; background-color: #614531;">Rezerviši</a>
       </div>
-      <button class="nav-toggle" onClick="{{ toggleMenu }}" aria-label="Meni">
+      <button class="nav-toggle" aria-label="Meni">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </nav>
   </header>
-  <div class="nav-backdrop {{ menuClass }}" onClick="{{ closeMenu }}"></div>
+  <div class="nav-backdrop"></div>
 
   <!-- HEADER + STATS -->
   <section style="padding: clamp(56px, 9vw, 108px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px); max-width: 1200px; margin: 0 auto; text-align: center;">
-    <span class="hero-rise" style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: {{ accent }}; display: block; animation-delay: 40ms;">Recenzije</span>
+    <span class="hero-rise" style="font-size: 12px; letter-spacing: 4px; text-transform: uppercase; display: block; animation-delay: 40ms;">Recenzije</span>
     <h1 class="hero-rise" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(40px, 6vw, 74px); line-height: 1.02; color: #33251a; margin: 14px 0 0; text-wrap: balance; animation-delay: 120ms;">Šta gosti kažu</h1>
     <p class="hero-rise" style="font-size: clamp(16px, 1.7vw, 19px); color: #6b5540; max-width: 46ch; margin: 18px auto 0; line-height: 1.55; animation-delay: 200ms;">Svaka reč je od pravih gostiju koji su proveli noći među borovima Zlatibora.</p>
 
     <div class="stats-row hero-rise" style="display: flex; align-items: center; justify-content: center; gap: clamp(28px, 5vw, 72px); margin-top: clamp(40px, 6vw, 64px); animation-delay: 280ms;">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <div style="display: flex; gap: 4px; color: {{ accent }};">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        </div>
+        <div style="display: flex; gap: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
         <div style="font-family: 'Instrument Serif', serif; font-size: clamp(32px, 4vw, 46px); line-height: 1; color: #33251a;">4.96</div>
       </div>
       <div class="stat-div" style="width: 1px; height: 64px; background: rgba(60,44,29,0.16);"></div>
@@ -108,20 +61,102 @@
   <section style="background: #ebe4d6; padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(64px, 10vw, 120px);">
     <div style="max-width: 1200px; margin: 0 auto;">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: start;">
-        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="12">
-          <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
-            <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            </div>
-            <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">{{ r.text }}</p>
-            <div style="font-size: 14px; font-weight: 600; color: #33251a;">{{ r.name }}</div>
-            <div style="font-size: 13px; color: #9c8460;">{{ r.origin }}</div>
-          </div>
-        </sc-for>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Savršen mir. Jacuzzi uveče uz zvezde je nešto najlepše. Vraćamo se sigurno.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Ana i Miloš</div>
+          <div style="font-size: 13px; color: #9c8460;">Beograd</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Kućica je tačno kao na slikama, čak i lepša. Čisto, toplo i predivan pogled.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Jelena</div>
+          <div style="font-size: 13px; color: #9c8460;">Novi Sad</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Idealno za odmor od grada. Internet odličan, mogli smo i da radimo par sati.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Stefan</div>
+          <div style="font-size: 13px; color: #9c8460;">Niš</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Bili smo zimi, sneg svuda okolo, a unutra toplo uz kamin. Kao iz bajke.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Marija i Nikola</div>
+          <div style="font-size: 13px; color: #9c8460;">Kragujevac</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Čistoća na najvišem nivou. Sve blista, peškiri mekani, ništa nije falilo.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Dragana</div>
+          <div style="font-size: 13px; color: #9c8460;">Čačak</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Došli smo na medeni mesec. Privatnost i tišina su tačno ono što smo tražili.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Teodora i Luka</div>
+          <div style="font-size: 13px; color: #9c8460;">Subotica</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Leto na Zlatiboru je posebno, a sa terase se pije kafa uz najlepši pogled.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Ivan</div>
+          <div style="font-size: 13px; color: #9c8460;">Pančevo</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Planinarili smo po ceo dan, a uveče jacuzzi za umorne noge. Idealna kombinacija.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Nemanja</div>
+          <div style="font-size: 13px; color: #9c8460;">Užice</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Priroda oko kućice je netaknuta. Ujutru nas je probudio samo pev ptica.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Sofija</div>
+          <div style="font-size: 13px; color: #9c8460;">Zrenjanin</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Radila sam na daljinu nedelju dana. Miran kutak, brz net — najbolja kancelarija.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Milica</div>
+          <div style="font-size: 13px; color: #9c8460;">Beograd</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Sa decom smo se osećali sigurno i opušteno. Ima prostora za igru napolju.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Porodica Jovanović</div>
+          <div style="font-size: 13px; color: #9c8460;">Smederevo</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Kamin, ćebad i knjiga — nismo hteli da izađemo napolje. Prava zimska idila.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Aleksandar</div>
+          <div style="font-size: 13px; color: #9c8460;">Valjevo</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Domaćini su ljubazni i uvek dostupni. Sve preporuke za restorane bile su tačne.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Katarina i Vuk</div>
+          <div style="font-size: 13px; color: #9c8460;">Kraljevo</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Tišina koja leči. Prvi put u godinu dana sam se stvarno odmorio.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Bojan</div>
+          <div style="font-size: 13px; color: #9c8460;">Leskovac</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Za dvoje savršeno romantično. Zalazak sunca sa terase pamtićemo dugo.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Sara i Đorđe</div>
+          <div style="font-size: 13px; color: #9c8460;">Sombor</div>
+        </div>
+        <div class="rev-card" style="background: #f8f3ea; border-radius: 20px; padding: 40px 30px; display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 5px; color: #8A7565; margin-bottom: 14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          <p style="font-size: 17px; color: #3c2c1d; line-height: 1.6; margin: 0 0 24px; flex: 1;">Odlična polazna tačka za Tornik i gondolu. Sve blizu, a opet u svom miru.</p>
+          <div style="font-size: 14px; font-weight: 600; color: #33251a;">Vladimir</div>
+          <div style="font-size: 13px; color: #9c8460;">Šabac</div>
+        </div>
       </div>
       <div style="text-align: center; margin-top: clamp(48px, 7vw, 76px);">
         <a href="index.html#recenzije" class="cta" style="display: inline-block; font-size: 15px; font-weight: 600; color: #33251a; border: 1.5px solid rgba(34,49,34,0.25); padding: 15px 30px; border-radius: 999px;">Nazad na početnu</a>
@@ -144,45 +179,6 @@
     </div>
   </footer>
 
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{
-  &quot;$preview&quot;: { &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: 900 },
-  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: [&quot;#c0714a&quot;, &quot;#8a6d3b&quot;, &quot;#5e7355&quot;, &quot;#a85a4a&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Izgled&quot; },
-  &quot;bookingUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Linkovi&quot; }
-}">
-class Component extends DCLogic {
-  state = { menuOpen: false };
-  renderVals() {
-    const accent = this.props.accent ?? "#c0714a";
-    return {
-      accent,
-      menuClass: this.state.menuOpen ? "open" : "",
-      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      closeMenu: () => this.setState({ menuOpen: false }),
-      bookingUrl: this.props.bookingUrl || "#",
-      hoverLink: { color: accent },
-      reviews: [
-        { text: "Savršen mir. Jacuzzi uveče uz zvezde je nešto najlepše. Vraćamo se sigurno.", name: "Ana i Miloš", origin: "Beograd" },
-        { text: "Kućica je tačno kao na slikama, čak i lepša. Čisto, toplo i predivan pogled.", name: "Jelena", origin: "Novi Sad" },
-        { text: "Idealno za odmor od grada. Internet odličan, mogli smo i da radimo par sati.", name: "Stefan", origin: "Niš" },
-        { text: "Bili smo zimi, sneg svuda okolo, a unutra toplo uz kamin. Kao iz bajke.", name: "Marija i Nikola", origin: "Kragujevac" },
-        { text: "Čistoća na najvišem nivou. Sve blista, peškiri mekani, ništa nije falilo.", name: "Dragana", origin: "Čačak" },
-        { text: "Došli smo na medeni mesec. Privatnost i tišina su tačno ono što smo tražili.", name: "Teodora i Luka", origin: "Subotica" },
-        { text: "Leto na Zlatiboru je posebno, a sa terase se pije kafa uz najlepši pogled.", name: "Ivan", origin: "Pančevo" },
-        { text: "Planinarili smo po ceo dan, a uveče jacuzzi za umorne noge. Idealna kombinacija.", name: "Nemanja", origin: "Užice" },
-        { text: "Priroda oko kućice je netaknuta. Ujutru nas je probudio samo pev ptica.", name: "Sofija", origin: "Zrenjanin" },
-        { text: "Radila sam na daljinu nedelju dana. Miran kutak, brz net — najbolja kancelarija.", name: "Milica", origin: "Beograd" },
-        { text: "Sa decom smo se osećali sigurno i opušteno. Ima prostora za igru napolju.", name: "Porodica Jovanović", origin: "Smederevo" },
-        { text: "Kamin, ćebad i knjiga — nismo hteli da izađemo napolje. Prava zimska idila.", name: "Aleksandar", origin: "Valjevo" },
-        { text: "Domaćini su ljubazni i uvek dostupni. Sve preporuke za restorane bile su tačne.", name: "Katarina i Vuk", origin: "Kraljevo" },
-        { text: "Tišina koja leči. Prvi put u godinu dana sam se stvarno odmorio.", name: "Bojan", origin: "Leskovac" },
-        { text: "Za dvoje savršeno romantično. Zalazak sunca sa terase pamtićemo dugo.", name: "Sara i Đorđe", origin: "Sombor" },
-        { text: "Odlična polazna tačka za Tornik i gondolu. Sve blizu, a opet u svom miru.", name: "Vladimir", origin: "Šabac" },
-      ],
-    };
-  }
-}
-</script>
+  <script src="js/site.js"></script>
 </body>
 </html>

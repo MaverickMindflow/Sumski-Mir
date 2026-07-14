@@ -1,0 +1,61 @@
+/* Šumski Mir — Zlatibor | shared styles */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: 'Hanken Grotesque', system-ui, sans-serif; color: #2e2015; -webkit-font-smoothing: antialiased; overflow-x: hidden; background-color: #EBE3D6; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: inherit; }
+::selection { background: #dcc199; }
+
+.gal-img { transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+.gal-tile:hover .gal-img { transform: scale(1.03); }
+
+.cta { transition: transform 200ms ease-out; }
+.cta:hover { transform: translateY(-2px) scale(1.02); }
+
+.rev-card { transition: transform 220ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease-out; }
+.rev-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -20px rgba(60,44,29,0.5); }
+
+@keyframes heroRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-rise { animation: heroRise 620ms cubic-bezier(.22,.61,.36,1) both; }
+@media (prefers-reduced-motion: reduce) { .hero-rise { animation: none; } }
+
+/* ---------- responsive ---------- */
+html, body { overflow-x: hidden; }
+.nav-toggle { display: none; border: 0; background: transparent; cursor: pointer; padding: 8px; margin: -8px; color: #33251a; line-height: 0; }
+.nav-backdrop { display: none; }
+
+@media (max-width: 880px) {
+  .nav-toggle { display: inline-flex; z-index: 70; }
+  .nav-links {
+    position: fixed; top: 0; right: 0; height: 100vh; width: min(80vw, 320px);
+    flex-direction: column !important; align-items: stretch !important;
+    justify-content: flex-start !important; gap: 6px !important;
+    padding: 92px 26px 26px; background: #f4efe6;
+    box-shadow: -14px 0 46px rgba(60,44,29,0.22);
+    transform: translateX(105%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+    z-index: 65;
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links a { font-size: 18px !important; padding: 12px 4px !important; border-bottom: 1px solid rgba(42,38,32,0.08); }
+  .nav-links a.cta { border-bottom: 0; text-align: center; margin-top: 14px; padding: 15px 20px !important; }
+  .nav-backdrop.open { display: block; position: fixed; inset: 0; background: rgba(20,15,10,0.42); z-index: 60; }
+}
+
+@media (max-width: 900px) {
+  .price-grid { grid-template-columns: 1fr !important; }
+  .okolina-grid { grid-template-columns: 1fr !important; }
+  .okolina-map { margin-top: 0 !important; order: 2; }
+  .okolina-text { margin-top: 24px !important; order: 1; }
+  .okolina-places { margin-top: 18px !important; }
+  .hero-photo-wrap img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center 38% !important; }
+}
+
+@media (max-width: 720px) {
+  .stats-row { flex-direction: column !important; }
+  .stats-row .stat-div { display: none !important; }
+}
+
+@media (max-width: 680px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; grid-auto-rows: 150px !important; }
+  .gallery-grid .gal-tile { grid-column: auto !important; grid-row: auto !important; }
+}
